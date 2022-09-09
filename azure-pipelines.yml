@@ -24,6 +24,6 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: 'install'
-    workingDir: '.'
-    customEndpoint: 'NPM'
+    command: 'publish'
+    workingDir: 'package.json'
+    publishEndpoint: 'npm1'
