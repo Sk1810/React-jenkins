@@ -30,5 +30,5 @@ steps:
 - task: Npm@1
   inputs:
     command: 'publish'
-    workingDir: '**/package.json'
+    workingDir: '/home/ec2-user/myagent/_work/node_modules/vso-task-lib'
     publishEndpoint: 'npmm'
