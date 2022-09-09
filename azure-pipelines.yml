@@ -29,6 +29,6 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: publish
-    publishRegistry: useExternalRegistry
+    command: 'publish'
+    workingDir: '**/npm'
     publishEndpoint: 'npmm'
