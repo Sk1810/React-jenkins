@@ -17,10 +17,7 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- task: Npm@1
-  inputs:
-    command: 'install'
-    customEndpoint: 'NPM'
+
 
 - task: Npm@1
   inputs:
