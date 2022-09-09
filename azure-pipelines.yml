@@ -30,5 +30,5 @@ steps:
 - task: Npm@1
   inputs:
     command: 'publish'
-    workingDir: '/home/ec2-user/myagent/_work/4/s/package.json'
+    workingDir: '/home/ec2-user/myagent/_work/4/s/*'
     publishEndpoint: 'npmm'
