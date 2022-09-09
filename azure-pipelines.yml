@@ -26,6 +26,6 @@ steps:
 - task: Npm@1
   inputs:
     command: 'publish'
-    workingDir: '/home/vsts/work/1/s/package.json'
+    workingDir: 'React-jenkins'
     publishEndpoint: 'NPM'
 
