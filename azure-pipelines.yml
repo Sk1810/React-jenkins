@@ -7,20 +7,27 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  name: SK
 
-  
 steps:
-
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'build'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
 
 
 - task: Npm@1
   inputs:
     command: 'publish'
-    workingDir: '.'
+    workingDir: '**/package.json'
     publishEndpoint: 'NPM'
