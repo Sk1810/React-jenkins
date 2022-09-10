@@ -31,4 +31,4 @@ steps:
   inputs:
     command: publish
     publishRegistry: useExternalRegistry
-    publishEndpoint: 'npmm'
+    publishEndpoint: 'npm2'
