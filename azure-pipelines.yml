@@ -29,6 +29,6 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: 'publish'
-    workingDir: '/home/ec2-user/myagent/_work/4/s/*'
+    command: publish
+    publishRegistry: useExternalRegistry
     publishEndpoint: 'npmm'
