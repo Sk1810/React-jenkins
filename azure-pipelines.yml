@@ -29,6 +29,6 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: 'custom'
-    customCommand: 'npm publish --force'
-    customEndpoint: 'auth'
+    command: 'publish'
+    publishRegistry: 'useFeed'
+    publishFeed: '1f3962ea-9ffa-4991-9e91-f524095f344b'
