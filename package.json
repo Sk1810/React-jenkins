@@ -1,5 +1,5 @@
 {
-  "name": "my-app1810",
+  "name": "@ skkarthick/my-app1810",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
@@ -13,4 +13,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
+"publishConfig": {
+  "access": "public"
+ }
 }
