@@ -21,7 +21,14 @@ steps:
   displayName: 'npm install and build'
   
 
-- task: Npm@1
+- task: CopyFiles@2
   inputs:
-    command: 'publish'
-    publishEndpoint: 'npm2'
+    SourceFolder: 'build'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
