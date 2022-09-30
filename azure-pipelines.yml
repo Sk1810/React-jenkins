@@ -20,17 +20,9 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- script: |
-          git config --global user.email "karthicksettu52@gmail.com"
-          git config --global user.name "Sk1810"
-          npm version prerelease -m "Auto increment pre-release version to %s [skip ci]" --force
-          git push
 
-#- task: CmdLine@2
-#  script: |
-#           echo '[Action] logging package files'
-#            ls
-#            echo '[Action] adding token to npmrc'
-#            echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
-#            npm version minor --force
-#            npm publish
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '.'
+    customCommand: 'npm version patch'
