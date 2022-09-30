@@ -21,9 +21,13 @@ steps:
   displayName: 'npm install and build'
 
 
-- task: Npm@1
+- task: CmdLine@2
   inputs:
-    command: 'custom'
-    workingDir: '.'
-    customCommand: 'npm version minor'
-    customEndpoint: 'npm-levi2'
+    script: |
+            echo '[Action] logging package files'
+            ls
+            echo '[Action] adding token to npmrc'
+            echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
+             npm version minor
+             npm publish
+    workingDirectory: '.'
