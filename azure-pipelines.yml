@@ -26,3 +26,4 @@ steps:
     command: 'custom'
     workingDir: '.'
     customCommand: 'npm version patch'
+  
