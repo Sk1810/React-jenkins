@@ -20,7 +20,12 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '.'
+    customCommand: 'npm version minor --force'
+    customEndpoint: 'npm-levi2'
 
 - task: CmdLine@2
   inputs:
@@ -29,5 +34,5 @@ steps:
             ls
             echo '[Action] adding token to npmrc'
             echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
-            npm version --no-commit-hooks minor
+            npm version minor --force
             npm publish
