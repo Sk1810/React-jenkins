@@ -21,6 +21,7 @@ steps:
   displayName: 'npm install and build'
 
 
+
 - task: CmdLine@2
   inputs:
     script: |
@@ -28,5 +29,5 @@ steps:
             ls
             echo '[Action] adding token to npmrc'
             echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
-            npm version patch -m "Upgrade to %s for reasons"
+            npm version --no-commit-hooks minor
             npm publish
