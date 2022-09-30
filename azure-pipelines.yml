@@ -20,15 +20,10 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      echo '[Action] logging package files'
-      ls
-      echo '[Action] adding token to npmrc'
-      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
-      npm update 0.1.1
-      npm publish
-    workingDirectory: '.'
 
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '.'
+    customCommand: 'npm update 0.1.1'
+    customEndpoint: 'npm-levi2'
