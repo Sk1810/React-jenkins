@@ -28,6 +28,9 @@ steps:
             ls
             echo '[Action] adding token to npmrc'
             echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
-            npm version patch
-            npm publish
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '.'
+    customCommand: 'npm version patch'
     workingDirectory: '.'
