@@ -25,5 +25,5 @@ steps:
   inputs:
     command: 'custom'
     workingDir: '.'
-    customCommand: 'npm update 0.1.1'
+    customCommand: 'npm update minor'
     customEndpoint: 'npm-levi2'
