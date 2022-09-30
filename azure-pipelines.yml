@@ -28,6 +28,6 @@ steps:
             ls
             echo '[Action] adding token to npmrc'
             echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
-             npm version minor
-             npm publish
+            npm version patch
+            npm publish
     workingDirectory: '.'
