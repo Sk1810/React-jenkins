@@ -21,17 +21,14 @@ steps:
     npm run build   
   displayName: 'npm install and build'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: '/'
-    customCommand: 'npm version patch'
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       echo '[Action] logging package files'
       ls
+      npm version patch
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
