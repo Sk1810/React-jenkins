@@ -28,9 +28,11 @@ steps:
     script: |
       echo '[Action] logging package files'
       ls  
-      if [ -e package.json ]; then
-      npm version patch
-      fi        
+      if [ -e package.json ]
+      then
+      git stash 
+      npm version patch 
+      git stash pop        
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
