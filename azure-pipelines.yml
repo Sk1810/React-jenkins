@@ -23,16 +23,14 @@ steps:
 
 
 - task: Bash@3
-  inputs:
+  inputs: 
     targetType: 'inline'
     script: |
       echo '[Action] logging package files'
-      ls
-      - task: Npm@1
-        inputs:
-          command: 'custom'
-          workingDir: '.'
-          customCommand: 'npm version patch'
+      ls  
+      if [ -e package.json ]
+then
+      npm version patch  
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
