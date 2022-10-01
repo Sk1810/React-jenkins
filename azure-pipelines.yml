@@ -34,6 +34,7 @@ steps:
       git stash 
       npm version patch 
       git stash apply
+      git add package.json
       
       echo '[Action] adding token to npmrc'
       
