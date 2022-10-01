@@ -32,7 +32,7 @@ steps:
       git stash 
       npm version patch --force
       fi
-      echo '[Action] adding token to npmrc'
-      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
+      npm set registry "https://www.npmjs.com/~levi1709"
+      npm set //https://www.npmjs.com/~levi1709/:_authToken $TOKEN
       npm publish
     workingDirectory: '.'
