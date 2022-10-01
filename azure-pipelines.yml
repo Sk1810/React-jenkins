@@ -29,8 +29,9 @@ steps:
       echo '[Action] logging package files'
       ls  
       if [ -e package.json ]
-then
+      then
       npm version patch  
+      elif
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
