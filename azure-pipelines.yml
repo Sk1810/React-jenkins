@@ -18,10 +18,14 @@ steps:
 
 - script: |
     npm install
-    npm run build
-    npm version patch
+    npm run build   
   displayName: 'npm install and build'
 
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '.'
+    customCommand: 'npm version patch'
 - task: Bash@3
   inputs:
     targetType: 'inline'
