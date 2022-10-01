@@ -32,9 +32,11 @@ steps:
       git config --global user.name "Sk1810 "
       if [ -e package.json ]; then
       git stash 
-      npm version patch --force
+      npm version patch 
       fi
-      npm set registry "https://www.npmjs.com/~levi1709"
-      npm set //https://www.npmjs.com/~levi1709/:_authToken $TOKEN
+      echo '[Action] logging package files'
+            ls
+            echo '[Action] adding token to npmrc'
+            echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
     workingDirectory: '.'
