@@ -28,8 +28,11 @@ steps:
     script: |
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       echo '[Action] logging package files'
-      ls        
+      ls     
+      git config user.name "Karthick"
+      git config user.email "karthicksettu52@gmail.com"
       git stash 
+
       npm version patch 
       
       echo '[Action] adding token to npmrc'
