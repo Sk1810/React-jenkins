@@ -33,9 +33,6 @@ steps:
       npm version patch 
       git config --global user.name "Karthick"
       git config --global user.email "karthicksettu52@gmail.com"
-      git push origin HEAD:$(Build.SourceBranchName)
-      
-      
       echo '[Action] adding token to npmrc'
       
       npm publish
