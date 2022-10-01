@@ -41,11 +41,6 @@ steps:
    git config --global user.email "karthicksettu52@gmail.com"
    git config --global user.name "Sk1810"
    npm version patch -m "Bump version to %s [skip ci]" --force
-
-  displayName: 'Bump release version'
-
-- script: |
-
    git push origin HEAD:$(Build.SourceBranchName)
 
   displayName: 'Update Git Repo'
