@@ -34,8 +34,7 @@ steps:
       npm publish
     workingDirectory: '.'
 
-- checkout: self
-  persistCredentials: true
+
 
 - script: |
 
