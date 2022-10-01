@@ -30,10 +30,7 @@ steps:
       ls        
       git stash 
       npm version patch 
-      git config --global user.email "karthicksettu52@gmail.com"
-      git config --global user.name "Sk1810"
-      git add package.json 
-      git commit -m
+      git stash apply
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
