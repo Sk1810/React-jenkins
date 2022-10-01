@@ -26,13 +26,14 @@ steps:
   inputs: 
     targetType: 'inline'
     script: |
+      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       echo '[Action] logging package files'
       ls        
       git stash 
       npm version patch 
       git stash apply
       echo '[Action] adding token to npmrc'
-      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
+      
       npm publish
     workingDirectory: '.'
 
