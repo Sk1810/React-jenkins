@@ -31,8 +31,8 @@ steps:
       ls     
       git stash 
       npm version patch 
-      git config --global user.name "Karthick"
-      git config --global user.email "karthicksettu52@gmail.com"
+      git user.name "Karthick"
+      git user.email "karthicksettu52@gmail.com"
       echo '[Action] adding token to npmrc'
       
       npm publish
