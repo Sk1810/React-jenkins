@@ -32,8 +32,8 @@ steps:
       git config user.name "Karthick"
       git config user.email "karthicksettu52@gmail.com"
       git stash 
-
       npm version patch 
+      git stash apply
       
       echo '[Action] adding token to npmrc'
       
