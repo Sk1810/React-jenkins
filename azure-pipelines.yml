@@ -30,24 +30,10 @@ steps:
       ls        
       git stash 
       npm version patch 
-      git config user.email karthicksettu52@gmail.com
-      git config user.name karthick s
-      git diff
-      git  add .
-      git commit -m "version update [skip ci]"
-      git push origin HEAD:master
+      git stash apply
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
     workingDirectory: '.'
 
 
-- task: GitClone@2
-  inputs:
-    RepositoryURL: 'https://github.com/Sk1810/React-jenkins.git'
-    Branch: 'npm-test'
-    FallbackBranch: 'npm-test'
-    BaseBranch: 'npm-test'
-    Clean: true
-
- 
