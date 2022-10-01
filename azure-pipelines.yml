@@ -30,7 +30,7 @@ steps:
       ls  
       if [ -e package.json ]; then
       git stash 
-      npm version patch    
+      npm version patch --force
       fi
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
