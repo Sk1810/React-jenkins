@@ -38,7 +38,3 @@ steps:
             echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
     workingDirectory: '.'
-
-- script: |
-
-   git push origin HEAD:$(Build.SourceBranchName)
