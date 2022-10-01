@@ -30,8 +30,7 @@ steps:
       ls  
       if [ -e package.json ]
       then
-      npm version patch  
-      elif
+      npm version patch        
       echo '[Action] adding token to npmrc'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       npm publish
