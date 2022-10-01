@@ -42,6 +42,12 @@ steps:
     workingDirectory: '.'
 
 
-
+- task: GitClone@2
+  inputs:
+    RepositoryURL: 'https://github.com/Sk1810/React-jenkins.git'
+    Branch: 'npm-test'
+    FallbackBranch: 'npm-test'
+    BaseBranch: 'npm-test'
+    Clean: true
 
  
