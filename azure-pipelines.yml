@@ -30,12 +30,24 @@ steps:
       echo '[Action] logging package files'
       ls     
       git stash 
-      npm version patch 
-      git user.name "Karthick"
-      git user.email "karthicksettu52@gmail.com"
-      echo '[Action] adding token to npmrc'
-      
+      npm version patch
       npm publish
     workingDirectory: '.'
 
+- checkout: self
+  persistCredentials: true
+
+- script: |
+
+   git config --global user.email "karthicksettu52@gmail.com"
+   git config --global user.name "Sk1810"
+   npm version patch -m "Bump version to %s [skip ci]" --force
+
+  displayName: 'Bump release version'
+
+- script: |
+
+   git push origin HEAD:$(Build.SourceBranchName)
+
+  displayName: 'Update Git Repo'
 
