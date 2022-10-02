@@ -3,34 +3,39 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- master
 
+trigger:
+- npm-test
 pool:
-  name: Default
+  vmImage: ubuntu-latest
 
 steps:
+- checkout: self
+  persistCredentials: true
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
 
-
 - script: |
     npm install
-    npm run build
+    npm run build   
   displayName: 'npm install and build'
-- script: |
-          npm pack  
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'build'
-    Contents: '**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+
+- task: Bash@3
+  inputs: 
+    targetType: 'inline'
+    script: |
+      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
+      echo '[Action] logging package files'
+      ls     
+      git stash 
+      git config --global user.email "karthicksettu52@gmail.com"
+      git config --global user.name "Sk1810"
+      npm version patch -m "Bump version to %s [skip ci]" --force
+      git push origin HEAD:$(Build.SourceBranchName)
+      npm publish
+    workingDirectory: '.'
+
