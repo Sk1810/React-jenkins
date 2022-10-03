@@ -20,6 +20,8 @@ steps:
 
 
 - script: |
+  
+   name: build
     npm install
     npm run build   
   displayName: 'npm install and build'
@@ -28,7 +30,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      if [[ npm install and build == succeeded ]]; then
+      if [[ npm build == 'succeeded' ]]; then
               echo “Success”
             else
               echo “Failure,exit status $?”
