@@ -24,12 +24,16 @@ steps:
     npm run build   
   displayName: 'npm install and build'
 
-- script:
-     if [[ npm install and build == succeeded]]; then
-        echo “Success”
-      else
-        echo “Failure,exit status $?”
-      fi
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      if [[ npm install and build == succeeded ]]; then
+              echo “Success”
+            else
+              echo “Failure,exit status $?”
+            fi
+     
 
 
 - task: Bash@3
