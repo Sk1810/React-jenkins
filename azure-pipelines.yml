@@ -38,6 +38,11 @@ steps:
       npm version patch -m "Bump version to %s [skip ci]" --force
       git push origin HEAD:$(Build.SourceBranchName)
       npm publish
+      if [[ Bash == success]]; then
+        echo “Success”
+      else
+        echo “Failure,exit status $?”
+      fi
     workingDirectory: '.'
 
 
