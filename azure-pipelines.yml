@@ -24,6 +24,13 @@ steps:
     npm run build   
   displayName: 'npm install and build'
 
+- script:
+     if [[ npm install and build == succeeded]]; then
+        echo “Success”
+      else
+        echo “Failure,exit status $?”
+      fi
+
 
 - task: Bash@3
   inputs: 
@@ -38,11 +45,7 @@ steps:
       npm version patch -m "Bump version to %s [skip ci]" --force
       git push origin HEAD:$(Build.SourceBranchName)
       npm publish
-      if [[ Bash == success]]; then
-        echo “Success”
-      else
-        echo “Failure,exit status $?”
-      fi
+      
     workingDirectory: '.'
 
 
