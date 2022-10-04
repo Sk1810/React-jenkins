@@ -15,7 +15,7 @@ steps:
   persistCredentials: true
 - task: NodeTool@0
   inputs:
-    versionSpec: 'o'
+    versionSpec: '10.x'
   displayName: 'Install Node.js'
 
   condition: succeeded()
