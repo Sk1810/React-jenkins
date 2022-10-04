@@ -25,18 +25,13 @@ steps:
     npm run build   
   
   displayName: 'npm install and build'
-   
 - task: Bash@3
   condition: failed() # this job will only run npm install and build fails
   inputs: 
     targetType: 'inline'
     script: |
       echo 'package is not ready to be published'
-  
-   
-
-   
- 
+  displayName: package is not ready to be published
 - task: Bash@3
   condition: succeeded()
   inputs: 
@@ -53,11 +48,11 @@ steps:
       git push origin HEAD:$(Build.SourceBranchName)
       npm publish
     workingDirectory: '.'
-
-
+  displayName: package publish is in progress 
 - task: Bash@3
   condition: succeeded()
   inputs: 
     targetType: 'inline'
     script: |
       echo 'package is published to registry'
+  displayName: package is published
