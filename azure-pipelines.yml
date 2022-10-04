@@ -20,16 +20,29 @@ steps:
 
   condition: succeeded()
 - script: |
+    echo npm is ready to install and build
     npm install
     npm run build   
+  
   displayName: 'npm install and build'
+   
+- task: Bash@3
+  condition: failed() # this job will only run npm install and build fails
+  inputs: 
+    targetType: 'inline'
+    script: |
+      echo 'package is not ready to be published'
+  
+   
 
-
+   
+ 
 - task: Bash@3
   condition: succeeded()
   inputs: 
     targetType: 'inline'
     script: |
+      echo 'package is ready to be published'
       echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
       echo '[Action] logging package files'
       ls     
@@ -39,7 +52,12 @@ steps:
       npm version patch -m "Bump version to %s [skip ci]" --force
       git push origin HEAD:$(Build.SourceBranchName)
       npm publish
-      
     workingDirectory: '.'
 
 
+- task: Bash@3
+  condition: succeeded()
+  inputs: 
+    targetType: 'inline'
+    script: |
+      echo 'package is published to registry'
