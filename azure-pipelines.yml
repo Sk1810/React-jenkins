@@ -15,30 +15,18 @@ steps:
   persistCredentials: true
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: 'o'
   displayName: 'Install Node.js'
 
-
+  condition: succeeded()
 - script: |
-  
-   name: build
     npm install
     npm run build   
   displayName: 'npm install and build'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      if [[ npm build == 'succeeded' ]]; then
-              echo “Success”
-            else
-              echo “Failure,exit status $?”
-            fi
-     
-
 
 - task: Bash@3
+  condition: succeeded()
   inputs: 
     targetType: 'inline'
     script: |
