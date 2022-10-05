@@ -20,7 +20,7 @@ steps:
 
 - script: |
     echo npm is ready to install and build
-    npm insta
+    npm install
     npm run build  
   
   displayName: 'npm install and build'
