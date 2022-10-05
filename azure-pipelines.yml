@@ -17,11 +17,10 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-- task: Npm@0
-  condition: succeeded()
+
 - script: |
     echo npm is ready to install and build
-    npm instal
+    npm insta
     npm run build  
   
   displayName: 'npm install and build'
@@ -46,7 +45,7 @@ steps:
       git config --global user.name "Sk1810"
       npm version patch -m "Bump version to %s [skip ci]" --force
       git push origin HEAD:$(Build.SourceBranchName)
-      npm publish
+      
     workingDirectory: '.'
   displayName: package publish is in progress 
 - task: Bash@3
@@ -54,5 +53,7 @@ steps:
   inputs: 
     targetType: 'inline'
     script: |
+      npm publish
       echo 'package is published to registry'
+    workingDirectory: '.' 
   displayName: package is published
