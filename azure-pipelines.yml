@@ -37,7 +37,7 @@ steps:
     targetType: 'inline'
     script: |
       echo 'package is ready to be published'
-      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
+      echo '//registry.npmjs.org/:_authToken=$(TKEN)' > .npmrc
       echo '[Action] logging package files'
       ls     
       git config --global user. email "karthicksettu52@gmail.com"
