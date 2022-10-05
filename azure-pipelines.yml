@@ -21,8 +21,8 @@ steps:
   condition: succeeded()
 - script: |
     echo npm is ready to install and build
-    npm install
-    npm run build   
+    npm instal
+    npm run build  
   
   displayName: 'npm install and build'
 - task: Bash@3
