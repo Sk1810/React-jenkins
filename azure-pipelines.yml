@@ -13,6 +13,11 @@ pool:
 steps:
 - checkout: self
   persistCredentials: true
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'azuredevops-sonar'
+    scannerMode: 'CLI'
+    configMode: 'file'
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
@@ -24,6 +29,10 @@ steps:
     npm run build  
   
   displayName: 'npm install and build'
+- task: SonarQubeAnalyze@5
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
 - task: Bash@3
   condition: failed() # this job will only run npm install and build fails
   inputs: 
