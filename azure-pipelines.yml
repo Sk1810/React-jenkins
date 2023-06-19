@@ -1,0 +1,67 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+# no PR triggers
+pr: none
+trigger:
+- npm-test
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self
+  persistCredentials: true
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'azuredevops-sonar'
+    scannerMode: 'CLI'
+    configMode: 'file'
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    echo npm is ready to install and build
+    npm install
+    npm run build  
+  
+  displayName: 'npm install and build'
+- task: SonarQubeAnalyze@5
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+- task: Bash@3
+  condition: failed() # this job will only run npm install and build fails
+  inputs: 
+    targetType: 'inline'
+    script: |
+      echo 'package is not ready to be published'
+  displayName: package is not ready to be published
+- task: Bash@3
+  condition: succeeded()
+  inputs: 
+    targetType: 'inline'
+    script: |
+      echo 'package is ready to be published'
+      echo '//registry.npmjs.org/:_authToken=$(TOKEN)' > .npmrc
+      echo '[Action] logging package files'
+      ls     
+      git config --global user. email "karthicksettu52@gmail.com"
+      git config --global user.name "Sk1810"
+      npm vesion pach -m "Bump version to %s [skip ci]" --force
+      git push origin HEAD:$(Build.SourceBranchName)
+      
+    workingDirectory: '.'
+  displayName: package publish is in progress 
+- task: Bash@3
+  condition: succeeded()
+  inputs: 
+    targetType: 'inline'
+    script: |
+      npm publish
+      echo 'package is published to registry'
+    workingDirectory: '.' 
+  displayName: package is published
